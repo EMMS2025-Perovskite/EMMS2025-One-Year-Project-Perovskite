@@ -1,0 +1,26 @@
+
+on:
+  push:
+    paths:
+      - '**.tex'
+      - '**.bib'
+  pull_request:
+  
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    container:
+      image: danteev/texlive:latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Compile LaTeX document
+        run: latexmk -shell-escape -file-line-error -pdf -interaction=nonstopmode main.tex
+
+      - name: Upload PDF artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: compiled-pdf
+          path: main.pdf
