@@ -42,5 +42,5 @@ jobs:
           git config --global user.email "$author_email"
           git config --global user.name "$author_name"
           git add -f template.pdf
-          git commit -m "Version $(grep novathesisversion $VERSION_FILE | cut -d '{' -f3 | cut -d '}' -f1)"
+          git commit -m "Upload PDF"
           git push
