@@ -1,0 +1,124 @@
+\chapter{Sample Chapter}
+% You can label chapter to refer to it later in the text, e.g. in the
+% later chapter.
+\label{chpt:sample-chapter}
+
+The entire thesis should consist of \emph{chapters}, which are divided
+into \emph{sections}. Sections can further
+contain \emph{subsections}. This entire structure is visible
+in the table of contents. Additionally, LaTeX allows dividing subsection
+points into parts called \emph{subsubsections}, which are, with the settings
+of this template, invisible in the table of contents. However, they can still
+be useful for breaking longer subsection points into logical parts.
+
+\section{Sample Section}
+
+\subsection{Sample Subsection}
+
+\subsubsection{Figures}
+
+\begin{figure}[!htb]
+    \centering
+    \includegraphics[width=0.25\linewidth]{drawing_example}
+    \caption{Logo of the LaTeX book on Wikibooks
+    \cite{book:latex}}
+    \label{fig:sample-figure}
+\end{figure}
+
+Figures and tables should be included according to the template, always specifying:
+
+\begin{itemize}
+    \item centered position of the figure: \mono{{\textbackslash}centering};
+    \item dimensions of the figure and the name of the source file;
+    \item caption under the figure with citation, if it comes
+    from an external source;
+    \item a label, preferably starting with \emph{fig}, since
+    the namespace defined in \mono{{\textbackslash}label} is
+    global.
+\end{itemize}
+
+As a parameter in \mono{{\textbackslash}includegraphics}, provide the file name without extension. The image file should be placed
+in the \emph{figures} folder or another one configured in the preamble.
+It’s a good idea to use vector formats to preserve high
+print quality. Unfortunately, LaTeX has very limited
+SVG support, so a common solution is to convert vector graphics
+to PDF format.
+
+Every figure should be referenced in the text. Here, the figure serves as an example—
+the logo of the LaTeX book \ref{fig:sample-figure}, which
+is available on Wikibooks.
+
+\subsubsection{Tables}
+
+\input{tables/table_example.tex}
+
+The \emph{tabularray} package allows easy creation of both simple
+and complex tables. Every table should also be referenced
+in the text. Here, a sample table is defined as
+\ref{tbl:table-label}. Note that tables and figures
+are numbered independently, so they may share the same number. Therefore,
+context should always make clear whether it refers to a table or
+a figure.
+
+\subsubsection{Citations and Bibliography}
+
+Bibliographic entries should be added to the
+\emph{config/bibliography.bib} file using the biblatex standard. They will appear
+in the bibliography only after being cited in the text
+using \mono{{\textbackslash}cite}. As an example, we can cite
+the aforementioned LaTeX book \cite{book:latex}.
+
+\subsubsection{Equations}
+
+Equations are easiest to define using LaTeX’s built-in
+\mono{{\textbackslash}equation} environment, which supports
+inserting symbols in math mode. Equations can also be labeled
+to refer to them in the text, though it's not required. In this case,
+we can refer to equation \ref{eq:sample-equation}.
+
+\begin{equation} \label{eq:sample-equation}
+    \Delta p = K_s (\frac{1}{T_0} - \frac{1}{T_s}) h
+\end{equation}
+
+where:
+
+\begin{conditions}
+    \Delta p &  pressure difference $[Pa]$ \\
+    K_s      &  conversion coefficient equal to $3460$ \\
+    T_0      &  outdoor air temperature $[K]$ \\
+    T_s      &  indoor air temperature $[K]$ \\
+    h        &  distance from the neutral plane $[m]$ \\
+\end{conditions}
+
+Each equation should use symbols that are clearly
+defined. A good tool for this is the \mono{{\textbackslash}conditions}
+environment, defined in this template.
+
+\subsubsection{Best Practices}
+
+By default, LaTeX uses a larger space between two sentences than between
+words within a sentence, which is a common
+Anglo-Saxon typographic practice also seen in Poland.
+An alternative is the French approach, which uses equal
+spacing between words and between sentences. In LaTeX, the latter
+behavior can be enabled using the
+\mono{{\textbackslash}frenchspacing} option.
+
+If you don’t enable it, remember that all abbreviations
+in the middle of a sentence ending with a period should be handled specially
+so as not to trigger this behavior. You can do this
+by adding a backslash after the period where the space
+should not be increased. For example, the abbreviation for *for example*:
+\mono{e.g.\textbackslash}
+
+An alternative method is to add a non-breaking space, done
+by replacing the space with a tilde \textasciitilde, but it should
+only be used where necessary, typically to avoid widows
+at line ends.
+
+\subsubsection{Summary}
+
+This chapter explains the basic rules of working with the template using real
+examples, so it’s worth reviewing both the source code and
+the generated PDF. Additionally, reviewing the configuration files
+is recommended, where individual settings are accompanied by comments.
