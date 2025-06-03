@@ -18,3 +18,9 @@ jobs:
         uses: xu-cheng/latex-action@3.3.0
         with:
           root_file: main.tex
+
+      - name: Upload PDF as artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: compiled-pdf
+          path: main.pdf
