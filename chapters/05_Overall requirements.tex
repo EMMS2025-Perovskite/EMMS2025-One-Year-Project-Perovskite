@@ -1,0 +1,122 @@
+\chapter{Overall System Requirements}
+\label{chpt:overall-system-requirements}
+
+This section has been prepared in accordance with the methodology defined in ECSS-E-ST-10-06C – Technical Requirements Specification. It outlines the general system requirements, which serve as a foundation for future design efforts and the development of more detailed, subsystem-specific requirements. At this stage, the focus shifts from strict verifiability to providing high-level guidance. Preliminary subsystem requirements are included in Appendix~B.
+
+\section{Requirements for the Scientific Community}
+The primary beneficiary group, as identified in the Use Cases, is the scientific community. 
+Accordingly, the following requirements focus on ensuring high-fidelity time-series data of perovskite solar cell performance under LEO conditions, 
+enabling accurate quantification of their degradation and recovery.
+Tabela \ref{tbl:requirements-science} summarizes the requirements directed at the scientific stakeholders.
+
+\begin{table}[!ht]
+    \centering
+    \small
+    \caption{First part of the overall system requirements related to the science community}
+    \label{tbl:requirements-science}
+    \begin{tblr}{%
+        hlines,
+        vlines,
+        row{1} = {font=\bfseries},
+        column{1} = {halign=c},
+    }
+        ID   & Type         & Description                                                                                                            \\
+        OR1  & Functional   & The payload subsystem shall perform a set of measurements per orbit on each of the perovskite solar cell samples under solar illumination: \\
+             &              & a) the open-circuit voltage (Voc),                                                                                        \\
+             &              & b) short-circuit current (Isc),                                                                                           \\
+             &              & c) maximum power (Pmax).                                                                                                   \\
+        OR2  & Functional   & All the measurements must be time-stamped and logged onboard.                                                             \\
+        OR3  & Functional   & The data acquisition hardware shall capture voltage and current measurements with a maximum error of 10\%.                  \\
+        OR4  & Functional   & The system shall be able to apply a controlled electrical bias of the set voltage value up to 5\,V to the perovskite solar cells. \\
+        OR5  & Functional   & The AOCS shall include sensors and actuators that ensure sun-pointing capabilities.                                        \\
+        OR6  & Functional   & The AOCS shall orient the satellite such that the perovskite panels receive sunlight with up to 10 degrees of precision.  \\
+        OR7  & Functional   & The COMMS shall downlink the logged experiment data in a format compliant with GS and support uplink of commands.          \\
+        OR8  & Verification & The perovskite solar cells shall be characterised pre-flight.                                                             \\
+        OR9  & Design       & The number of perovskite solar cells should allow for a safe and representative experiment.                                \\
+        OR10 & Logistics Support & The research results shall be published in a scientific journal or academic conference.                                 \\
+    \end{tblr}
+\end{table}
+
+\section{Requirements for the Industry Community}
+
+Furthermore, the space industry and perovskite manufacturers will utilise the results to inform and optimise future material and device designs.
+They require quantified degradation rates, clear evidence of any self-healing behaviour, and detailed technical documentation.
+Beyond the requirements mentioned beforehand, address the needs of industrial stakeholders.
+
+\begin{table}[!ht]
+    \centering
+    \small
+    \caption{Second part of the overall system requirements related to the industry community}
+    \label{tbl:requirements-industry}
+    \begin{tblr}{%
+        hlines,
+        vlines,
+        row{1} = {font=\bfseries},
+        column{1} = {halign=c},
+    }
+        ID    & Type               & Description                                                                                                      \\
+        OR9   & Logistics Support  & The subcontractor for the development of the perovskite solar cells shall be an institution oriented toward research and development. \\
+        OR10  & Mission            & The mission shall demonstrate the usage of perovskite solar cells in space conditions.                                                                                        \\
+        OR11  & Environmental      & The environmental parameters (e.g.\ ionising radiation, temperature, solar irradiance) shall be recorded concurrently.                                                       \\
+        OR12  & Product Assurance  & The development and testing procedures of the payload and EPS shall be documented, including design specifications, qualification tests, and integration processes.           \\
+        OR13  & Logistics Support  & The data format, metadata structure, and analysis pipeline shall conform to open standards, enabling direct use.                                                             \\
+    \end{tblr}
+\end{table}
+
+\section{Requirements for the Student Community}
+
+The mission also aims to engage and benefit the student and young professional community. 
+As an integral part of the space sector’s future workforce, they gain valuable educational and practical insights from the mission’s outcomes. 
+The project will provide multi-level resources tailored to varying degrees of expertise, from introductory overviews to advanced technical descriptions. 
+This approach ensures the effective transfer of knowledge and facilitates the inclusion of perovskite research in academic curricula, student projects, 
+and university-led initiatives. Requirements described in Table \ref{tbl:requirements-student} support these objectives.
+
+\begin{table}[!ht]
+    \centering
+    \small
+    \caption{Third part of the overall system requirements related to the student community}
+    \label{tbl:requirements-student}
+    \begin{tblr}{%
+        hlines,
+        vlines,
+        row{1} = {font=\bfseries},
+        column{1} = {halign=c},
+    }
+        ID    & Type              & Description                                                                                                                                    \\
+        OR14  & Logistics Support & The mission shall include roles for student team members in all major system engineering, project management and research activities.                 \\
+        OR15  & Logistics Support & Student involvement shall produce measurable outcomes, such as theses, reports, or publications.                                                   \\
+        OR16  & Design            & The system design shall enable assembly, integration, and testing by the student team under supervision.                                            \\
+        OR17  & Logistics Support & The mission shall provide open or university-accessible research data acquired during its operation in a public repository or portal.                \\
+        OR18  & Logistics Support & The mission shall provide an open or university-accessible design and testing documentation archived in a public repository or portal.               \\
+    \end{tblr}
+\end{table}
+
+\section{Requirements Supporting ESA Objectives}
+
+The requirements outlined below demonstrate how the mission aligns with the strategic objectives of the European Space Agency (ESA). 
+Through this endeavour, we aim to contribute meaningfully to ESA’s vision for the space sector. By adopting open data policies and employing a cost-effective CubeSat design, 
+the project demonstrates how small satellite platforms can efficiently validate cutting-edge technologies while maintaining compliance with debris mitigation guidelines 
+and ECSS standards. Requirements in the following table pertain to ESA-related goals.
+
+\begin{table}[!ht]
+    \centering
+    \small
+    \caption{Fourth part of the overall system requirements related to ESA objectives}
+    \label{tbl:requirements-esa}
+    \begin{tblr}{%
+        hlines,
+        vlines,
+        row{1} = {font=\bfseries},
+        column{1} = {halign=c},
+    }
+        ID    & Type           & Description                                                                                                                       \\
+        OR19  & Mission        & The mission shall validate perovskite reverse-bias treatment and assess its influence, helping increase its TRL.                     \\
+        OR20  & Logistics Support & The mission shall enable technology transfer and industrial uptake by European SMEs.                                                 \\
+        OR21  & Design         & The system shall serve as a model for an economically viable platform to test PSC.                                                   \\
+        OR22  & Mission        & The mission shall ensure end-of-life compliance by deorbiting the CubeSat within 25 years, in accordance with debris mitigation.   \\
+        OR23  & Product Assurance & The system shall comply with ECSS-E-ST-10-06C and all applicable standards throughout design, development, and operations.           \\
+    \end{tblr}
+\end{table}
+\label{req:or14}\label{req:or15}\label{req:or16}\label{req:or17}\label{req:or18}
+\label{req:or19}\label{req:or20}\label{req:or21}\label{req:or22}\label{req:or23}
+
