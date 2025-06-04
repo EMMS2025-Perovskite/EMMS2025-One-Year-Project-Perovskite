@@ -1,0 +1,35 @@
+\chapter{Appendix A}
+\label{AppendixA}
+\section{Parameters Definition and Theoretical Acquisition}
+
+
+The following section focuses on the interpretation and meaning of the measured parameters. A detailed technical description of their acquisition subsystem is provided in Chapter~\ref{ch:acquisition-subsystem}.
+
+To characterise the electrical performance of a solar cell, an I--V (current--voltage) curve is obtained by measuring the current output at various applied voltages. This is typically done by connecting the cell to a variable resistive load and sweeping the resistance from a very low value (approaching a short circuit) to a very high value (approaching an open circuit). The resulting I--V curve offers a comprehensive overview of the solar cell’s behaviour and enables the extraction of key parameters, as discussed in this section. An example of such a curve, along with the corresponding power--voltage (P--V) curve, is shown in Figure~\ref{fig:iv-pv}.
+
+\begin{figure}[!htb]
+    \centering
+    \includegraphics[width=1\textwidth]{figures/drawing_example.png}
+    \caption{Current--voltage and power--voltage characteristics of a solar cell.}
+    \label{fig:iv-pv}
+\end{figure}
+
+The \textbf{open-circuit voltage (Voc)} represents the maximum voltage a solar cell can produce, which occurs when no current is flowing. To determine Voc, an I--V sweep is performed using a variable resistive load ranging from nearly $0\,\omega$ to a very high resistance (theoretically approaching infinity). The algorithm then identifies Voc as the voltage corresponding to zero current, typically by linearly interpolating between the two closest data points. To improve accuracy, multiple surrounding points may be used to perform a linear or polynomial fit near the zero-current region.
+
+Analogically, the \textbf{short-circuit current (Isc)} is the current that flows through the solar cell when the voltage across it approaches zero. To find Isc, the algorithm locates the two data points that surround zero voltage and uses linear interpolation to estimate the current at \( V = 0 \). For greater accuracy, a small set of points near zero voltage can also be fitted using a linear or polynomial method.
+
+The \textbf{maximum power point (MPP, Pmax)} is the point on the power curve where the solar cell produces its highest power output. After completing an I--V sweep, the algorithm calculates power (\( P = V \times I \)) at each data point and identifies the maximum value. To reduce computational effort, especially with large datasets, specific techniques such as Maximum Power Point Tracking (MPPT) may be utilised. The detailed procedures of these algorithms are specified in the main document.
+
+The \textbf{fill factor (FF)} quantifies how efficiently the solar cell converts voltage and current into usable power. It is defined as the ratio of the maximum power output to the product of the open-circuit voltage and short-circuit current:
+\[
+\mathrm{FF} = \frac{P_{\text{max}}}{V_{\text{oc}} \times I_{\text{sc}}}
+\]
+A higher fill factor indicates that the solar cell operates closer to its theoretical maximum power.
+
+The \textbf{power--time curve} represents the temporal evolution of a solar cell’s power output under specified illumination and environmental conditions. To generate this curve, the system records the maximum power point (MPP) at regular time intervals. This curve directly reflects the degradation of the solar cell.
+
+The \textbf{relative degradation rate (DR)} quantifies the percentage loss in power output over a specified time interval, relative to an initial reference value. The reference power is measured immediately after deployment. The degradation rate at a given time \( t \) is determined using:
+\[
+\mathrm{DR}(t) = \frac{P_{\text{ref}} - P(t)}{P_{\text{ref}}} \times 100\%
+\]
+where \( P_{\text{ref}} \) is the initial reference power and \( P(t) \) is the power at time \( t \).
