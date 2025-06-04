@@ -1,0 +1,60 @@
+\section{Mission Definition}
+\label{sec:mission-definition}
+
+\subsection{Description}
+
+The mission delivers a 1-U CubeSat platform hosting three types of solar cells: 
+\begin{enumerate}
+    \item Standard silicon solar cells under nominal operation,
+    \item Perovskite solar cells under self-healing operation,
+    \item Perovskite solar cells under nominal operation.
+\end{enumerate}
+
+During the eclipse, the self-healing perovskite solar cells will receive a controlled reverse voltage pulse to induce defect passivation. The other solar cells remain under standard operation during that time. Each orbit, a single I--V sweep will record open‑circuit voltage (Voc), short‑circuit current (Isc), and enable the obtaining of the maximum power output (Pmax) and fill factor (FF). This will enable the quantification of degradation rates for each solar cell type, demonstrate the self-healing process, and benchmark perovskite efficiency over time against silicon performance and terrestrial ageing data.
+
+Detailed parameter definitions have been provided in Appendix~\ref{AppendixA}.
+\begin{table}[!ht]
+    \centering
+    \small
+    \caption{Quantities described in mission objectives and their measuring method}
+    \label{tbl:mission-parameters}
+    \begin{tblr}{
+        hlines,
+        vlines,
+        row{1}={font=\bfseries},
+        column{1}={halign=c},
+        column{2}={halign=l},
+    }
+        Data Item                   & Obtaining Method \\
+        Open-circuit voltage (Voc, V)     & Direct measurement (on-board) \\
+        Short-circuit current (Isc, A)    & Direct measurement (on-board) \\
+        Maximum power output (Pmax, W)    & MPPT algorithm (on-board) \\
+        Fill factor (FF, \%)              & Calculated from Isc, Voc, and Pmax \\
+        I-V and Pmax–time curves          & Derived from Isc, Voc, Pmax, and time \\
+        Relative degradation rate (DR, \%) & Calculated from I–V and Pmax–time curves \\
+                                           & using on-board and terrestrial reference data \\   \end{tblr}
+\end{table}
+
+A precise methodology for obtaining parameters has been detailed in Appendix~\ref{AppendixA}.
+
+\subsection{Primary Scientific Objectives}
+
+\paragraph{Quantify Degradation:}
+Two perovskite solar cell groups (PSCs) are compared. The objective is to measure how perovskite solar cells degrade in the space environment by monitoring key electrical parameters:
+\begin{itemize}
+    \item Open-circuit voltage (Voc),
+    \item Short-circuit current (Isc),
+    \item Fill factor (FF),
+    \item Maximum power output (Pmax).
+\end{itemize}
+
+\paragraph{Demonstrate Self-Healing:}
+Two PSC groups are compared. This objective investigates the self-healing behaviour of PSCs by applying a controlled reverse bias during designated recovery phases in orbital eclipse. Recovery is evaluated by comparing the I--V and Pmax--time curves of PSCs with and without self-healing. These curves are derived from the parameters listed above.
+
+\subsection{Secondary Scientific Objectives}
+
+\paragraph{Compare Degradation Rates Between On-board Solar Cells:}
+All three solar cell groups are compared. The goal is to compare I--V and Pmax--time curves between perovskite and conventional silicon solar cells under identical space conditions to evaluate relative degradation rates.
+
+\paragraph{Correlate Degradation Rates with Terrestrial and Literature Data:}
+Two PSC groups are compared with terrestrial data. The objective is to analyse and compare the on-orbit experimental results with previously published terrestrial degradation and healing studies of PSCs.
