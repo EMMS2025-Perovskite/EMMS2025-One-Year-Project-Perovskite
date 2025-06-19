@@ -34,4 +34,4 @@ mission success. The current WBS emphasizes clarity and modularity, aligning wit
     \item \textbf{Mission Operation} – Defines post-launch operational activities, including commissioning, routine functioning, anomaly resolution, timeline management, and end-of-life strategies.
 \end{enumerate}
 
- \includegraphics[width=\textwidth, keepaspectratio]{Initial_WBS_2.1.drawio (1).png}
+ \includegraphics[width=\textwidth, keepaspectratio]{figures/01_01_03_Initial_WBS.png}
