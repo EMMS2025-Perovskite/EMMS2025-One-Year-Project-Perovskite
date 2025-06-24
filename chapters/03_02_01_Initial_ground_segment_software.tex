@@ -1,0 +1,70 @@
+
+\chapter{Initial assumptions for the ground segment software}
+\label{chpt:03-02-01-initial-ground-segment-sofware}
+
+This chapter outlines the initial assumptions and foundational guidelines for the development of the ground segment software. Its primary purpose is to provide a structured basis for the software engineering activities associated with ground station operations, satellite communication, data reception, processing, and mission control. It presents the general requirements that the software must fulfill, as well as the overarching design principles that will guide its architecture and implementation.
+
+The content of this chapter is intended to serve as a reference point during the early phases of the project. However, it is important to note that the assumptions and requirements described herein may evolve as the project progresses and as more detailed technical insights are gained.
+
+\section{Definition}
+
+The ground segment software refers to the software installed at the ground station. It is responsible for the autonomous control and operation of ground station activities, including:
+
+\begin{itemize}
+    \item Managing and coordinating satellite communication sessions,
+    \item Executing mission-specific tasks related to data reception and processing,
+    \item Handling data storage, analysis, and transmission to mission control systems,
+    \item Ensuring reliable and secure communication with the satellite and other mission infrastructure.
+\end{itemize}
+
+\section{Requirements}
+
+The following requirements define the initial expectations for the ground segment software of the mission. They are intended to guide the design and development of software responsible for ground station operations, satellite communication, data reception, and mission control. These requirements reflect the functional and architectural goals of the system and may be refined as the project evolves.
+
+\begin{table}[!ht]
+    \centering
+    \small
+    \caption{General ground segment software requirements}
+    \label{tbl:general-ground-software-requirements}
+
+    \begin{tblr}{%
+        hlines,
+        vlines,
+        row{1} = {font=\bfseries},
+        column{1} = {halign=c},
+        colspec = {c c Q[8 cm]}
+    }
+        ID    & Type           & Description \\
+        GSR01 & Functional     & The software shall manage and coordinate communication sessions with the satellite, including uplink and downlink operations. \\
+        GSR02 & Architecture   & The system shall support a distributed architecture composed of desktop, web-based, and hardware-integrated components. \\
+        GSR03 & Interface      & The software shall provide a clear and user-friendly graphical user interface (GUI) for mission operators. \\
+        GSR04 & Functional     & The system shall enable real-time and historical visualization of telemetry and mission data through a dashboard. \\
+        GSR05 & Communication  & The software shall support reliable communication between internal components using standard protocols (e.g., MQTT, REST). \\
+        GSR06 & Data Handling  & The software shall decode, store, and archive telemetry and payload data received from the satellite. \\
+        GSR07 & Security       & The system shall implement user authentication and access control mechanisms. \\
+        GSR08 & Fault Tolerance & The software shall monitor the health of its components and support automatic recovery in case of failure. \\
+        GSR09 & Maintainability & The system shall support modular updates and remote configuration of mission parameters. \\
+        GSR10 & Mission Specific & The software shall provide tools for monitoring satellite status, payload performance, and ground station environment. \\
+    \end{tblr}
+\end{table}
+
+
+\section{Initial design outline}
+
+The ground segment software will be designed as a distributed system composed of multiple independent components, each responsible for a specific set of functions. This architecture ensures modularity, scalability, and fault isolation, allowing the system to be deployed across different machines and platforms, including desktop applications, web interfaces, and hardware-integrated services.
+
+The system will be divided into the following core components:
+
+\begin{itemize}
+    \item \textbf{Graphical User Interface (GUI)} – A user-friendly interface for mission operators, providing access to telemetry data, command execution, system status, and mission dashboards.
+    \item \textbf{Hardware Drivers} – Low-level software modules responsible for interfacing with ground station hardware such as antennas, radios, and signal processors.
+    \item \textbf{Communication Manager} – Handles all aspects of satellite communication, including session scheduling, modulation/demodulation, and protocol handling.
+    \item \textbf{Satellite Control Interface} – Manages command generation, uplink operations, and satellite state tracking.
+    \item \textbf{Data Processing Unit} – Responsible for decoding, validating, storing, and analyzing telemetry and payload data received from the satellite.
+\end{itemize}
+
+Each component will communicate with others through well-defined interfaces using standard communication protocols (e.g., REST, WebSocket, or message queues such as MQTT), enabling asynchronous and resilient operation. This modular and distributed design supports flexible deployment, easy maintenance, and future extensibility of the ground segment software.
+
+
+
+
