@@ -1,0 +1,74 @@
+\chapter{Initial assumptions for the space segment software}
+\label{chpt:03-01-05-initial-space-segment-sofware}
+This chapter outlines the initial assumptions and foundational guidelines for the development of the space segment software. Its primary purpose is to provide a structured basis for the software engineering activities associated with the satellite mission. It presents the general requirements that the software must fulfill, as well as the overarching design principles that will guide its architecture and implementation.
+
+The content of this chapter is intended to serve as a reference point during the early phases of the project. However, it is important to note that the assumptions and requirements described herein may evolve as the project progresses and as more detailed technical insights are gained.
+
+\section{Definition}
+The space segment software refers to the onboard software installed on the satellite. It is responsible for the autonomous control and operation of the spacecraft, including:
+\begin{itemize}
+    \item Managing and coordinating all onboard subsystems (e.g., power, thermal, attitude control, propulsion),
+    \item Executing mission-specific tasks related to the payload,
+    \item Handling data acquisition, processing, storage, and transmission,
+    \item Ensuring reliable communication with the ground segment,
+\end{itemize}
+
+\section{Requirements}
+
+The following requirements define the initial expectations for the space segment software of the mission. They are intended to guide the design and development of onboard software responsible for satellite control and payload operations. 
+
+\begin{table}[!ht]
+    \centering
+    \small
+    \caption{General space segment software requirements}
+    \label{tbl:general-space-software-requirements}
+
+    \begin{tblr}{%
+        hlines,
+        vlines,
+        row{1} = {font=\bfseries},
+        column{1} = {halign=c},
+        colspec = {c c Q[8 cm]}
+    }
+        ID    & Type           & Description \\
+        SSR01 & Functional     & The software shall autonomously control all satellite subsystems, including power, thermal, ADCS, and communication. \\
+        SSR02 & Functional     & The software shall manage the operation of the perovskite solar cell payload, including activation, monitoring, and data acquisition. \\
+        SSR03 & Functional     & The software shall collect, store, and transmit telemetry and payload data to the ground segment. \\
+        SSR04 & Functional     & The software shall support time-tagged and event-driven command execution. \\
+        SSR05 & Fault Tolerance & The software shall implement basic fault detection, isolation, and recovery (FDIR) mechanisms to ensure mission continuity. \\
+        SSR06 & Performance    & The software shall operate within the limited computational and memory resources of the chosen OBDHS \\
+        SSR07 & Interface      & The software shall interface with all onboard hardware components via standard communication protocols (e.g., I2C, SPI, UART). \\
+        SSR08 & Safety         & The software shall ensure safe mode entry in case of critical anomalies or loss of communication. \\
+        SSR09 & Data Management & The software shall compress and prioritize data for downlink based on mission-defined criteria. \\
+        SSR10 & Maintainability & The software shall be modular and support updates during integration and testing phases. \\
+        SSR11 & Standards Compliance & The software shall comply with ECSS-E-ST-40C and ECSS-Q-ST-80C standards for space software engineering and product assurance. \\
+        SSR12 & Mission Specific & The software shall log environmental and electrical parameters of the payload to evaluate its performance in orbit. \\
+    \end{tblr}
+  
+\end{table}
+
+\section{Initial design outline}
+
+The initial software design for the CubeSat mission is based on a modular and layered architecture, which ensures separation of concerns, maintainability, and scalability. The software is divided into five main functional modules: Mission Management, Attitude and Orbit Control, Payload Management, Data Handling, and Communications. This structure reflects the key responsibilities of the onboard software and allows for independent development and testing of each subsystem. The modular approach is complemented by a layered architecture, where high-level application logic is separated from low-level hardware interfaces through a system services layer.
+
+\subsection{Task Scheduling and Execution Model}
+
+The onboard software will be based on a real-time operating system (RTOS), which enables deterministic task scheduling, prioritization, and concurrent execution of mission-critical functions. The RTOS will manage multiple tasks with clearly defined priorities to ensure system responsiveness and reliability.
+
+The highest priority will be assigned to fault detection, isolation, and recovery (FDIR) mechanisms, which are essential for maintaining spacecraft safety and operational integrity. Attitude and orbit control tasks will follow, as they are crucial for maintaining satellite orientation and ensuring the correct functioning of other subsystems. Communication tasks will be assigned medium priority, allowing for timely data exchange with the ground segment without interfering with critical control loops. Finally, payload operations related to the perovskite experiment will be executed with lower priority, ensuring they do not compromise the stability or safety of the platform.
+
+This scheduling strategy ensures that the most time-sensitive and safety-critical functions are always executed first, while still supporting the scientific objectives of the mission.
+
+\subsection{Fault Management Approach}
+
+The onboard software will implement a basic Fault Detection, Isolation and Recovery (FDIR) strategy to ensure the safety and continued operation of the CubeSat in the event of anomalies. A dedicated safe mode will be defined, in which all non-essential subsystems are deactivated, and the satellite maintains a stable orientation and minimal power consumption while awaiting ground intervention or autonomous recovery.
+
+Fault detection mechanisms will include a watchdog timer to reset the system in case of software hang-ups, as well as threshold monitoring of critical parameters such as temperature, voltage levels, and angular velocity. Additionally, heartbeat signals will be used to monitor the health of key software modules. If a heartbeat is not received within a predefined interval, the system will attempt to isolate the fault and initiate recovery procedures, which may include restarting the affected module or transitioning to safe mode.
+
+\subsection{Deployment and Update Strategy}
+
+The onboard software will support in-orbit updates to enable post-launch improvements, bug fixes, and mission reconfiguration. To ensure robustness and reliability, the update mechanism will include both validation and rollback capabilities.
+
+Before activating a new software image, the system will perform an integrity check using a cryptographic hash (e.g., SHA-256) to verify that the file has not been corrupted or tampered with during transmission. Additionally, the update will be executed in a dedicated test mode, allowing the system to boot into the new version in a sandboxed environment. During this phase, critical subsystems will be monitored to ensure proper initialization and operation.
+
+If the new version passes validation and test mode execution, it will be promoted to active status. Otherwise, the system will initiate a rollback procedure, restoring the previously functioning version from a secure memory partition. This process will be managed by a bootloader capable of selecting between software slots and tracking update status via persistent flags. A watchdog timer will supervise the update process and trigger a rollback if the system becomes unresponsive. Heartbeat signals from key modules will also be used to confirm successful startup and operation of the new software.
